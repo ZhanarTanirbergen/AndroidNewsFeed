@@ -20,6 +20,9 @@ public interface NewsDao {
     @Insert
     void insert(News newsItem);
 
-    @Delete
-    void delete(News newsItem);
+    @Query("DELETE FROM news")
+    void deleteAll();
+
+    @Query("DELETE FROM news WHERE news.id = :itemId")
+    void deleteById(int itemId);
 }

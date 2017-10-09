@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 /**
  * Created by zhanara on 02.10.17.
  */
-@Database(entities = {News.class}, version = 2, exportSchema = false)
+@Database(entities = {News.class}, version = 3, exportSchema = false)
 public abstract class MyDatabase extends RoomDatabase {
     public abstract NewsDao newsDao();
 }

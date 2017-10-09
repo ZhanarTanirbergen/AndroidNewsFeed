@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.zhanara.newsfeed.Db.News;
@@ -40,6 +41,7 @@ public class NewsAdapter extends
         holder.setPosition(position);
         holder.title.setText(newsList.get(position).getTitle());
         holder.date.setText(newsList.get(position).getPubDate());
+        holder.img.setBackgroundResource(newsList.get(position).getImgUrl());
     }
 
     @Override
@@ -63,21 +65,26 @@ public class NewsAdapter extends
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView title, date;
+        public ImageView img;
         int position;
 
         public ViewHolder(View view, final Context event) {
             super(view);
             title = (TextView) view.findViewById(R.id.item_title);
             date = (TextView) view.findViewById(R.id.item_pubDate);
+            img = (ImageView) view.findViewById(R.id.item_image);
+
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int pos = getAdapterPosition();
                     News clickedItem = newsList.get(pos);
                     Intent intent = new Intent(event, ShowNewsItemActivity.class);
+                    intent.putExtra("id", clickedItem.getId());
                     intent.putExtra("title", clickedItem.getTitle());
                     intent.putExtra("date", clickedItem.getPubDate());
                     intent.putExtra("content", clickedItem.getContent());
+                    intent.putExtra("imageId", clickedItem.getImgUrl());
                     event.startActivity(intent);
                 }
             });

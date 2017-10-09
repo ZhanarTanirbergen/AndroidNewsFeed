@@ -23,7 +23,6 @@
             android:layout_height="60dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
-            android:src="@drawable/ornament"
             android:layout_margin="20dp"
             android:scaleType="fitXY" />
 

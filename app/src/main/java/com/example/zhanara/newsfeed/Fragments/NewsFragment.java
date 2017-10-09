@@ -15,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.zhanara.newsfeed.Adapters.NewsAdapter;
 import com.example.zhanara.newsfeed.Db.MyDatabase;
@@ -23,10 +24,12 @@ import com.example.zhanara.newsfeed.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class NewsFragment extends Fragment {
 
     private RecyclerView rv;
+    private ImageView img;
     private NewsAdapter adapter;
     private List<News> newsList = new ArrayList<>();
     MyDatabase db;
@@ -37,6 +40,7 @@ public class NewsFragment extends Fragment {
 
         db = Room.databaseBuilder(getActivity().getApplicationContext(),
                 MyDatabase.class, "newsfeed")
+                .fallbackToDestructiveMigration()
                 .build();
         new ShowNewsAsync().execute();
     }
@@ -46,6 +50,7 @@ public class NewsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.newsfragment, container, false);
         rv = view.findViewById(R.id.rvNews);
+        img = view.findViewById(R.id.item_image);
         return view;
     }
 

@@ -25,7 +25,7 @@ public class News implements Serializable {
     private String pubDate;
 
     @ColumnInfo(name = "img_url")
-    private String imgUrl;
+    private int imgUrl;
 
     @ColumnInfo(name = "content")
     private String content;
@@ -54,11 +54,11 @@ public class News implements Serializable {
        return pubDate;
     }
 
-    public void setImgUrl(String imgUrl) {
+    public void setImgUrl(int imgUrl) {
         this.imgUrl = imgUrl;
     }
 
-    public String getImgUrl() {
+    public int getImgUrl() {
         return imgUrl;
     }
 
