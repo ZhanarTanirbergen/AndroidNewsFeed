@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import com.example.zhanara.newsfeed.Db.MyDatabase;
 import com.example.zhanara.newsfeed.Fragments.AddFragment;
 import com.example.zhanara.newsfeed.Fragments.NewsFragment;
+import com.example.zhanara.newsfeed.Fragments.CategoriesFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new NewsFragment(), "News");
-        adapter.addFragment(new NewsFragment(), "Categories");
+        adapter.addFragment(new CategoriesFragment(), "Categories");
         adapter.addFragment(new AddFragment(), "Add new item");
         viewPager.setAdapter(adapter);
     }
