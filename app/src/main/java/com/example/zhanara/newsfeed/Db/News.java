@@ -5,6 +5,9 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,20 +18,32 @@ import java.util.Date;
  @Entity (tableName = "news")
 public class News implements Serializable {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @SerializedName("author")
+    @Expose
+    private String author;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ;
 
-    @ColumnInfo(name = "title")
+    @SerializedName("title")
+    @Expose
     private String title;
 
-    @ColumnInfo(name = "pub_date")
-    private String pubDate;
+    @SerializedName("description")
+    @Expose
+    private String description;
 
-    @ColumnInfo(name = "img_url")
-    private int imgUrl;
+    @SerializedName("url")
+    @Expose
+    private String url;
 
-    @ColumnInfo(name = "content")
-    private String content;
+    @SerializedName("urlToImage")
+    @Expose
+    private String urlToImage;
+
+    @SerializedName("publishedAt")
+    @Expose
+    private String publishedAt;
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
     public void setId(int id) {
         this.id = id;
@@ -46,28 +61,45 @@ public class News implements Serializable {
         return title;
     }
 
-    public void setPubDate(String date) {
-        this.pubDate = date;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
-    public String  getPubDate() {
-       return pubDate;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setImgUrl(int imgUrl) {
-        this.imgUrl = imgUrl;
+
+    public void setPublishedAt(String date) {
+        this.publishedAt = date;
     }
 
-    public int getImgUrl() {
-        return imgUrl;
+    public String  getPublishedAt() {
+       return publishedAt;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getContent() {
-        return content;
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrlToImage(String imgUrl) {
+        this.urlToImage = imgUrl;
+    }
+
+    public String getUrlToImage() {
+        return urlToImage;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
 //    private static int lastContactId = 0;

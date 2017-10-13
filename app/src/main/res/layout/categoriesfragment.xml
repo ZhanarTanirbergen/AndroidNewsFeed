@@ -10,9 +10,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="800dp"
-        android:paddingTop="100dp"
         android:background="@color/grey"
         android:paddingBottom="30dp"
+        android:layout_marginTop="100dp"
         tools:context="com.example.zhanara.newsfeed.MainActivity">
 
 

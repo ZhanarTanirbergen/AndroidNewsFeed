@@ -1,8 +1,14 @@
 package com.example.zhanara.newsfeed.Api;
 
-/**
- * Created by zhanara on 12.10.17.
- */
+import java.util.List;
 
-public class ApiInterface {
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+
+
+public interface ApiInterface {
+    @GET("/v1/articles?source=cnn&sortBy=top")
+    Call<Example> getPosts(@Query("apiKey") String apiKey);
+
 }

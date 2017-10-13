@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.zhanara.newsfeed.Db.News;
 import com.example.zhanara.newsfeed.R;
 import com.example.zhanara.newsfeed.ShowNewsItemActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -40,8 +41,10 @@ public class NewsAdapter extends
     public void onBindViewHolder(NewsAdapter.ViewHolder holder, int position) {
         holder.setPosition(position);
         holder.title.setText(newsList.get(position).getTitle());
-        holder.date.setText(newsList.get(position).getPubDate());
-        holder.img.setBackgroundResource(newsList.get(position).getImgUrl());
+        holder.date.setText(newsList.get(position).getPublishedAt());
+        String newsImage = newsList.get(position).getUrlToImage();
+        Picasso.with(mContext).load(newsImage).into(holder.img);
+//        holder.img.setBackgroundResource(newsList.get(position).getUrlToImage());
     }
 
     @Override
@@ -82,9 +85,9 @@ public class NewsAdapter extends
                     Intent intent = new Intent(event, ShowNewsItemActivity.class);
                     intent.putExtra("id", clickedItem.getId());
                     intent.putExtra("title", clickedItem.getTitle());
-                    intent.putExtra("date", clickedItem.getPubDate());
-                    intent.putExtra("content", clickedItem.getContent());
-                    intent.putExtra("imageId", clickedItem.getImgUrl());
+                    intent.putExtra("date", clickedItem.getPublishedAt());
+                    intent.putExtra("content", clickedItem.getDescription());
+                    intent.putExtra("imageUrl", clickedItem.getUrlToImage());
                     event.startActivity(intent);
                 }
             });

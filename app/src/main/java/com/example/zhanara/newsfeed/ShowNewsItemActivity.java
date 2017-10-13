@@ -25,8 +25,9 @@ import android.widget.Toast;
 import com.example.zhanara.newsfeed.Adapters.NewsAdapter;
 import com.example.zhanara.newsfeed.Db.MyDatabase;
 import com.example.zhanara.newsfeed.Db.News;
-import com.example.zhanara.newsfeed.Fragments.AddFragment;
+//import com.example.zhanara.newsfeed.Fragments.AddFragment;
 import com.example.zhanara.newsfeed.Fragments.NewsFragment;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -51,10 +52,10 @@ public class ShowNewsItemActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shownewsitem);
 
-        db        = Room.databaseBuilder(getApplicationContext(),
-                    MyDatabase.class, "newsfeed")
-                    .fallbackToDestructiveMigration()
-                    .build();
+//        db        = Room.databaseBuilder(getApplicationContext(),
+//                    MyDatabase.class, "newsfeed")
+//                    .fallbackToDestructiveMigration()
+//                    .build();
         toolbar   = (Toolbar) findViewById(R.id.toolbar);
         btnDelete = (FloatingActionButton) findViewById(R.id.delete);
         btnDelete.setOnClickListener(this);
@@ -74,7 +75,8 @@ public class ShowNewsItemActivity extends AppCompatActivity implements View.OnCl
         newsTitle.setText(intent.getStringExtra("title"));
         newsBody.setText(intent.getStringExtra("content"));
         newsDate.setText(intent.getStringExtra("date"));
-        newsImage.setBackgroundResource(intent.getIntExtra("imageId", 0));
+        String img = intent.getStringExtra("imageUrl");
+        Picasso.with(this.getApplicationContext()).load(img).into(newsImage);
 
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle("News");
@@ -103,10 +105,7 @@ public class ShowNewsItemActivity extends AppCompatActivity implements View.OnCl
             switch (which){
                 case DialogInterface.BUTTON_POSITIVE:
                     new DeleteAsync(intent.getIntExtra("id", 0)).execute();
-
-                    NewsFragment fragment = new NewsFragment();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragment_container, fragment).commit();
+                    finish();
                     break;
 
                 case DialogInterface.BUTTON_NEGATIVE:
